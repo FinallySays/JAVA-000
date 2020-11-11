@@ -14,13 +14,11 @@ import java.util.concurrent.FutureTask;
 public class FutureSolution implements Runnable {
     @Override
     public void run() {
-        FutureTask<Integer> futureTask = new FutureTask<>(() -> Fibo.get());
+        FutureTask<Integer> futureTask = new FutureTask<>(Fibo::get);
         new Thread(futureTask).start();
         try {
             System.out.println("Main get result = " + futureTask.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -13,14 +13,15 @@ import concurrent.solutions.*;
 public class Application {
     public static void main(String[] args) {
         Proxy proxy = new Proxy();
-        proxy.add(new StaticSolution());
-        proxy.add(new ThreadPoolSolution());
-        proxy.add(new CompletableFutureSolution());
         proxy.add(new CountDownLatchSolution());
         proxy.add(new CyclicBarrierSolution());
         proxy.add(new ExecutorCompletionServiceSolution());
         proxy.add(new LockSolution());
         proxy.add(new FutureSolution());
+        proxy.add(new JoinSolution());
+        proxy.add(new CompletableFutureSolution());
+        proxy.add(new ThreadPoolSolution());
+        proxy.add(new StaticSolution());
         proxy.start();
     }
 

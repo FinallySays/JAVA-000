@@ -17,14 +17,12 @@ public class ExecutorCompletionServiceSolution implements Runnable {
     public void run() {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         ExecutorCompletionService<Integer> executorCompletionService = new ExecutorCompletionService<>(executorService);
-        executorCompletionService.submit(() -> Fibo.get());
-        int result = 0;
+        executorCompletionService.submit(Fibo::get);
         try {
-            result = executorCompletionService.take().get();
+            System.out.println("Main get result = " + executorCompletionService.take().get());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Main get result = " + result);
         executorService.shutdown();
     }
 }

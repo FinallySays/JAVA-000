@@ -1,6 +1,7 @@
 package concurrent.solutions;
 
 import concurrent.Fibo;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -14,7 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
  **/
 
 public class LockSolution implements Runnable {
-    private static int result;
+    private static int result = -1;
 
     @Override
     public void run() {
@@ -34,7 +35,8 @@ public class LockSolution implements Runnable {
 
         lock.lock();
         try {
-            condition.await(10, TimeUnit.MILLISECONDS);
+            while (result == -1)
+                condition.await(3, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {

@@ -14,8 +14,7 @@ public class CompletableFutureSolution implements Runnable{
 
     @Override
     public void run() {
-        int result =  CompletableFuture.supplyAsync(() -> Fibo.get()).join();
-        System.out.println("Main get result = " + result);
+        System.out.println("Main get result = " + CompletableFuture.supplyAsync(Fibo::get).join());
     }
 
 }

@@ -17,12 +17,10 @@ public class ThreadPoolSolution implements Runnable {
     @Override
     public void run() {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Future<Integer> future = executorService.submit(() -> Fibo.get());
+        Future<Integer> future = executorService.submit(Fibo::get);
         try {
             System.out.println("Main get result = " + future.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         executorService.shutdown();
